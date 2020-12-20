@@ -11,6 +11,7 @@ type LogLevel string
 
 const (
 	GameLogLevel       = "GameLogLevel"
+	MatchMakingLogLevel   = "MatchMakingLogLevel"
 	ConnectionLogLevel = "ConnectionLogLevel"
 	BaseLogLevel       = "BaseLogLevel"
 	WarnLogLevel       = "WarnLogLevel"
@@ -19,6 +20,7 @@ const (
 
 var colors = map[LogLevel]aurora.Value{
 	GameLogLevel:       aurora.Magenta(GameLogLevel),
+	MatchMakingLogLevel:   aurora.Cyan(MatchMakingLogLevel),
 	ConnectionLogLevel: aurora.Blue(ConnectionLogLevel),
 	BaseLogLevel:       aurora.Gray(15, BaseLogLevel),
 	WarnLogLevel:       aurora.Yellow(WarnLogLevel),
@@ -34,6 +36,7 @@ type EmojigambleLogger struct {
 func AllLogLevels() []LogLevel {
 	return []LogLevel{
 		GameLogLevel,
+		MatchMakingLogLevel,
 		ConnectionLogLevel,
 		BaseLogLevel,
 		WarnLogLevel,
