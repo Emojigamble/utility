@@ -27,7 +27,10 @@ var colors = map[LogLevel]aurora.Value{
 	ErrorLogLevel:      aurora.Red(ErrorLogLevel),
 }
 
+// Configuration for the Emojigamble logger. LogOrigin is used to identify the source of a Log.
+// Optionally active log levels can be stored in the database with LogToDatabase and a MongoDBConnectionString.
 type EmojigambleLogger struct {
+	LogOrigin 				string
 	ActiveLogLevels         []LogLevel
 	LogToDatabase           bool
 	MongoDBConnectionString string
@@ -52,6 +55,7 @@ func (logger *EmojigambleLogger) log(message string, level LogLevel, logToDb boo
 	for _, l := range logger.ActiveLogLevels {
 		if l == level {
 			fmt.Println(
+				aurora.BrightBlue(logger.LogOrigin),
 				aurora.BgWhite(aurora.Gray(3, time.Now().Format(" 02.01.2006|15:04:05 "))),
 				strings.Replace(colors[level].String(), "LogLevel", "", 1), " ",
 				message)
