@@ -7,8 +7,9 @@ import (
 	"google.golang.org/api/option"
 )
 
-func SetupFirebaseAuthClient(ctx context.Context, keyFile string) (*auth.Client, error) {
-	opt := option.WithCredentialsFile(keyFile)
+// Creates firebase auth.Client for the given context and credentials file
+func FirebaseAuthClient(ctx context.Context, credentialsFile string) (*auth.Client, error) {
+	opt := option.WithCredentialsFile(credentialsFile)
 	app, err := firebase.NewApp(ctx, nil, opt)
 	if err != nil {
 		return nil, err
